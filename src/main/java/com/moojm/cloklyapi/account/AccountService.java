@@ -22,6 +22,7 @@ public class AccountService {
 
     public void createNewAccount(Account account) {
         // need to hash password before saving
+        System.out.println(account.getEmail());
         accountRepository.save(account);
     }
 

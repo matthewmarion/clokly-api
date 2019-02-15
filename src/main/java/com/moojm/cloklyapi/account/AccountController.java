@@ -12,7 +12,7 @@ public class AccountController {
     private AccountService accountService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/accounts")
-    public void createNewAccount(Account account) {
+    public void createNewAccount(@RequestBody Account account) {
         accountService.createNewAccount(account);
     }
 
@@ -27,7 +27,7 @@ public class AccountController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateAccount(Account account) {
+    public void updateAccount(@RequestBody Account account) {
         accountService.updateAccount(account);
     }
 
