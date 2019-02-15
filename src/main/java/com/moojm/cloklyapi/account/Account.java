@@ -1,9 +1,12 @@
 package com.moojm.cloklyapi.account;
 
+import com.moojm.cloklyapi.client.Client;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Account {
@@ -29,6 +32,8 @@ public class Account {
     @NotNull
     @Size(max = 32)
     private String lastName;
+
+    private List<Client> clients;
 
     public Account() {
 
@@ -76,5 +81,21 @@ public class Account {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+
+    public void addClient(Client client) {
+        clients.add(client);
+    }
+
+    public void deleteClient(Client client) {
+        clients.remove(client);
     }
 }

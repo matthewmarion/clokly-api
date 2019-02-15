@@ -25,14 +25,6 @@ public class ClientService {
         clientRepository.save(client);
     }
 
-    public Client getClientByEmail(String email) {
-        Optional<Client> optional = clientRepository.findClientByEmail(email);
-        if (!optional.isPresent()) {
-            throw new NoSuchElementException("Client does not exist.");
-        }
-        return optional.get();
-    }
-
     public Client getClientById(Long id) {
         Optional<Client> optional = clientRepository.findById(id);
         if (!optional.isPresent()) {

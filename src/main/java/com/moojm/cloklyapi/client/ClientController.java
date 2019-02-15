@@ -1,5 +1,6 @@
 package com.moojm.cloklyapi.client;
 
+import com.moojm.cloklyapi.account.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +12,9 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/clients")
-    public void createNewClient(@RequestBody Client client) {
-        clientService.createNewClient(client);
+    @RequestMapping(method = RequestMethod.POST, value = "/clients/{account/clients}")
+    public void createNewClient(@RequestBody Client client, @PathVariable Account account) {
+        account.addClient(client);
     }
 
     @RequestMapping("/clients")
@@ -23,7 +24,7 @@ public class ClientController {
 
     @RequestMapping("/clients/{email}")
     public Client getClientByEmail(@PathVariable String email) {
-        return clientService.getClientByEmail(email);
+        return null;
     }
 
     @RequestMapping(method = RequestMethod.PUT)

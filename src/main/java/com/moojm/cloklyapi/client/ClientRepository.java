@@ -6,6 +6,5 @@ import java.util.Optional;
 
 public interface ClientRepository extends CrudRepository<Client, Long> {
 
-    Optional<Client> findClientByEmail(String email);
 
 }
