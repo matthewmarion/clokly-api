@@ -1,9 +1,9 @@
 package com.moojm.cloklyapi.account;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Account {
@@ -11,9 +11,23 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @NotNull
+    @Email
+    @Size(max = 100)
+    @Column(unique = true)
     private String email;
+
+    @NotNull
+    @Size(max = 128)
     private String password;
+
+    @NotNull
+    @Size(max = 32)
     private String name;
+
+    @NotNull
+    @Size(max = 32)
     private String lastName;
 
     public Account() {

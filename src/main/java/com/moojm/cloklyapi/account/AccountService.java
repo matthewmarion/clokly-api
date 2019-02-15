@@ -28,7 +28,7 @@ public class AccountService {
     public Account getAccountByEmail(String email) {
         Optional<Account> optional = accountRepository.findAccountByEmail(email);
         if (!optional.isPresent()) {
-            throw new NoSuchElementException("Account does not exist.");
+            throw new NoSuchElementException("Client does not exist.");
         }
         return optional.get();
     }
@@ -36,14 +36,14 @@ public class AccountService {
     public Account getAccountById(Long id) {
         Optional<Account> optional = accountRepository.findById(id);
         if (!optional.isPresent()) {
-            throw new NoSuchElementException("Account does not exist.");
+            throw new NoSuchElementException("Client does not exist.");
         }
         return optional.get();
     }
 
     public void updateAccount(Account account) {
         if (!accountRepository.findById(account.getId()).isPresent()) {
-            throw new NoSuchElementException("Account does not exist.");
+            throw new NoSuchElementException("Client does not exist.");
         }
         accountRepository.save(account);
     }
@@ -51,7 +51,7 @@ public class AccountService {
     public void deleteAccount(Long id) {
         Optional<Account> optional = accountRepository.findById(id);
         if (!optional.isPresent()) {
-            throw new NoSuchElementException("Account does not exist.");
+            throw new NoSuchElementException("Client does not exist.");
         }
         accountRepository.delete(optional.get());
     }
