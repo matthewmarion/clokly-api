@@ -22,9 +22,9 @@ public class ClientController {
         return clientService.getAllClients(accountId);
     }
 
-    @RequestMapping("/accounts/{accountId}/clients/{email}")
-    public Client getClientByEmail(@PathVariable String email, @PathVariable Long accountId) {
-        return null;
+    @RequestMapping("/accounts/{accountId}/clients/{name}")
+    public Client getClientByName(@PathVariable Long accountId, @PathVariable String name) {
+        return clientService.getClientByName(accountId, name);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/accounts/{accountId}/clients")

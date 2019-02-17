@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface ClientRepository extends CrudRepository<Client, Long> {
     List<Client> findByAccountId(Long accountId);
+    Optional<Client> findByNameAndAccountId(String name, Long accountId);
 }

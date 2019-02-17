@@ -32,8 +32,8 @@ public class ClientService {
         clientRepository.save(client);
     }
 
-    public Client getClientById(Long id) {
-        Optional<Client> optional = clientRepository.findById(id);
+    public Client getClientByName(Long accountId, String name) {
+        Optional<Client> optional = clientRepository.findByNameAndAccountId(name, accountId);
         if (!optional.isPresent()) {
             throw new NoSuchElementException("Client does not exist.");
         }
