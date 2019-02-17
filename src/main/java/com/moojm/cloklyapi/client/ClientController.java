@@ -1,6 +1,5 @@
 package com.moojm.cloklyapi.client;
 
-import com.moojm.cloklyapi.account.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,28 +11,29 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/clients/{account/clients}")
-    public void createNewClient(@RequestBody Client client, @PathVariable Account account) {
-        account.addClient(client);
+    @RequestMapping(method = RequestMethod.POST, value = "/accounts/{accountId}/clients")
+    public void createNewClient(@RequestBody Client client, @PathVariable Long accountId) {
+        System.out.println("Testing");
+        clientService.createNewClient(client, accountId);
     }
 
-    @RequestMapping("/clients")
-    public List<Client> getAllClients() {
-        return clientService.getAllClients();
+    @RequestMapping("/accounts/{accountId}/clients")
+    public List<Client> getAllClients(@PathVariable Long accountId) {
+        return clientService.getAllClients(accountId);
     }
 
-    @RequestMapping("/clients/{email}")
-    public Client getClientByEmail(@PathVariable String email) {
+    @RequestMapping("/accounts/{accountId}/clients/{email}")
+    public Client getClientByEmail(@PathVariable String email, @PathVariable Long accountId) {
         return null;
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public void updateClient(@RequestBody Client client) {
+    @RequestMapping(method = RequestMethod.PUT, value = "/accounts/{accountId}/clients")
+    public void updateClient(@RequestBody Client client, @PathVariable Long accountId) {
         clientService.updateClient(client);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/clients/{id}")
-    public void deleteClient(@PathVariable Long id) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "/accounts/{accoundId}/clients/{id}")
+    public void deleteClient(@PathVariable Long id, @PathVariable Long accountId) {
         clientService.deleteClient(id);
     }
 }

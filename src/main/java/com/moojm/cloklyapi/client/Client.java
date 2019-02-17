@@ -18,7 +18,7 @@ public class Client {
     @Column(unique = true)
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private Account account;
 
     public Client() {

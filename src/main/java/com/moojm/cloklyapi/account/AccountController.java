@@ -26,7 +26,7 @@ public class AccountController {
         return accountService.getAccountByEmail(email);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT, value = "/accounts")
     public void updateAccount(@RequestBody Account account) {
         accountService.updateAccount(account);
     }

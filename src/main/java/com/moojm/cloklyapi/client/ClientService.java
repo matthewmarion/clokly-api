@@ -1,5 +1,7 @@
 package com.moojm.cloklyapi.client;
 
+import com.moojm.cloklyapi.account.Account;
+import com.moojm.cloklyapi.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +16,18 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public List<Client> getAllClients() {
+    @Autowired
+    private AccountService accountService;
+
+    public List<Client> getAllClients(Long accountId) {
         List<Client> clients = new ArrayList<>();
-        clientRepository.findAll().forEach(clients::add);
+        clientRepository.findByAccountId(accountId).forEach(clients::add);
         return clients;
     }
 
-    public void createNewClient(Client client) {
+    public void createNewClient(Client client, Long accountId) {
+        Account account = accountService.getAccountById(accountId);
+        client.setAccount(account);
         // need to hash password before saving
         clientRepository.save(client);
     }
